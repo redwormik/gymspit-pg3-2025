@@ -23,11 +23,17 @@ public class CarTests
 
 		StringWriter writer = new StringWriter();
 		car.Go(100, writer);
-		Assert.AreEqual(writer.ToString(), $"Went 100 km in 1 hours. 25 liters of gas left.{Environment.NewLine}");
+
+		string expected = $"Went 100 km in 1 hours. 25 liters of gas left.{Environment.NewLine}";
+		string actual = writer.ToString();
+		Assert.AreEqual(expected, actual);
 
 		writer.GetStringBuilder().Clear();
 		car.Go(200, writer);
-		Assert.AreEqual(writer.ToString(), $"Went 200 km in 2 hours. 15 liters of gas left.{Environment.NewLine}");
+
+		expected = $"Went 200 km in 2 hours. 15 liters of gas left.{Environment.NewLine}";
+		actual = writer.ToString();
+		Assert.AreEqual(expected, actual);
 
 		Assert.ThrowsException<ArgumentException>(() => car.Go(400, writer));
 	}
