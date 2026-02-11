@@ -1,7 +1,7 @@
 ﻿using Lecture18;
 
 Random random = new Random();
-Log log = new Log(Console.Out);
+Log log = new WriterLog(Console.Out);
 
 Controller ai = new AI(random);
 Character c3PO = new Character(ai, "C-3PO", 15, 2, 12, new Die(random, 8));

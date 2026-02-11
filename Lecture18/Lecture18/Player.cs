@@ -7,6 +7,7 @@ public class Player : Controller
 
 	private TextWriter? prompt;
 
+	
 	public Player(TextReader input, TextWriter? prompt = null)
 	{
 		this.input = input;

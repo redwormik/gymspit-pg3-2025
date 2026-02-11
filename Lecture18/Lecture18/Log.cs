@@ -1,79 +1,23 @@
 ﻿namespace Lecture18;
 
 
-public class Log
+public interface Log
 {
-	private TextWriter writer;
+	void AttackHit(Character source, Character target, int damageRoll);
 
+	void AttackMiss(Character source, Character target);
 
-	public Log(TextWriter writer)
-	{
-		this.writer = writer;
-	}
+	void CharacterAttack(Character source, Character target, int attackRoll);
 
+	void CharacterDoesNothing(Character character);
 
-	public void GameStart(Character characterOne, Character characterTwo)
-	{
-		writer.WriteLine("Let the games begin!");
-		CharacterStatus(characterOne);
-		CharacterStatus(characterTwo);
-	}
+	void CharacterStatus(Character character);
 
+	void CharacterTurn(Character character);
 
-	public void GameOver(Character? winner)
-	{
-		writer.WriteLine();
+	void CharacterWait(Character character, int waitRoll);
 
-		if (winner == null) {
-			writer.WriteLine("The game is a draw");
-		} else {
-			writer.WriteLine($"{winner.Name} wins the game!");
-		}
+	void GameOver(Character? winner);
 
-		writer.WriteLine();
-		writer.WriteLine();
-	}
-
-
-	public void CharacterTurn(Character character)
-	{
-		writer.WriteLine();
-		writer.WriteLine($"It is {character.Name}'s turn");
-	}
-
-
-	public void CharacterStatus(Character character)
-	{
-		writer.WriteLine($"{character.Name}: {(character.Alive ? "alive" : "dead")}, {character.HealthRatio:P0} health");
-	}
-
-
-	public void CharacterAttack(Character source, Character target, int attackRoll)
-	{
-		writer.WriteLine($"{source.Name} attacks {target.Name} (roll: {attackRoll})");
-	}
-
-
-	public void CharacterWait(Character character, int waitRoll)
-	{
-		writer.WriteLine($"{character.Name} waits (roll: {waitRoll})");
-	}
-
-
-	public void CharacterDoesNothing(Character character)
-	{
-		writer.WriteLine($"{character.Name} does nothing...");
-	}
-
-
-	public void AttackMiss(Character source, Character target)
-	{
-		writer.WriteLine($"{source.Name} misses {target.Name}");
-	}
-
-
-	public void AttackHit(Character source, Character target, int damageRoll)
-	{
-		writer.WriteLine($"{source.Name} hits {target.Name} for {damageRoll} damage");
-	}
+	void GameStart(Character characterOne, Character characterTwo);
 }
